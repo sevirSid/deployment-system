@@ -1,6 +1,12 @@
 import { NextResponse } from 'next/server';
-import si from 'systeminformation';
-
+// import si from 'systeminformation';
+// Mock implementation of systeminformation for testing 
+const si = { dockerContainers: [ { id: 'container1', name: 'my_container', image: 'my_image', 
+                                  state: 'running', status: 'Up 5 minutes', 
+                                  created: 1609459200000, ports: '3000/tcp', 
+                                  cpu_percent: 5.0, mem_usage: 512000000, mem_limit: 2048000000 }], 
+            dockerImages: [ { id: 'image1', tags: ['my_image:latest'], size: 10485760, created: 1609459200000 } ]};
+      
 export async function GET() {
   try {
     const [containers, images] = await Promise.all([
